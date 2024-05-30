@@ -1,4 +1,27 @@
-.App {
+.list-group-item {
+  border: 0;
+  background-color: transparent;
+}
+.list-group-item:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+.card:hover {
+  background-color: lightgray;
+}
+.card {
+  width: 300px;
+  margin: 10px;
+}
+.card-text {
+  margin: 3px;
+}
+#title {
+  font-size: larger;
+  font-weight: bold;
+}
+
+App {
   text-align: center;
 }
 

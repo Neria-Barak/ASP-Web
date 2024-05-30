@@ -1,25 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import LeftMenu from './LeftMenu/LeftMenu';
+import videos from './VideoItem/videos';
+import Search from './Search/Search';
+import { useState } from 'react';
+import VideoListResults from './VideoListResults/VideoListResults';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [videoList, setVideoList] = useState(videos);
+    const doSearch = function(q) {
+        setVideoList(videos.filter((video) => video.title.includes(q)));
+    }
+
+    return (
+        
+        <div className="container-fluid">
+            <div className="row">
+                <LeftMenu/>
+                <div className="col main-content">
+                    <Search doSearch={doSearch}></Search>
+                    <div className="row"></div>
+                    <div className="row"></div>
+                    <VideoListResults videos={videoList}/>
+                </div>
+                </div>
+            </div>
+    );
 }
 
 export default App;
