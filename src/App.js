@@ -4,6 +4,7 @@ import videos from './VideoItem/videos';
 import Search from './Search/Search';
 import { useState } from 'react';
 import VideoListResults from './VideoListResults/VideoListResults';
+import TagsBar from './Tags/TagsBar';
 
 function App() {
 
@@ -17,10 +18,9 @@ function App() {
         <div className="container-fluid">
             <div className="row">
                 <LeftMenu/>
-                <div className="col main-content">
+                <div id="right" className="col main-content">
                     <Search doSearch={doSearch}></Search>
-                    <div className="row"></div>
-                    <div className="row"></div>
+                    <TagsBar></TagsBar>
                     <VideoListResults videos={videoList}/>
                 </div>
                 </div>
