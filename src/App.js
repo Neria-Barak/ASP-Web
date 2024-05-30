@@ -8,9 +8,9 @@ import TagsBar from './Tags/TagsBar';
 
 function App() {
 
-    const [videoList, setVideoList] = useState(videos);
+    const [videoList, setVideoList] = useState(videos.videos);
     const doSearch = function(q) {
-        setVideoList(videos.filter((video) => video.title.includes(q)));
+        setVideoList(videos.videos.filter((video) => video.title.includes(q)));
     }
 
     return (
