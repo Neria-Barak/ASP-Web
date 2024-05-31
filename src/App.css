@@ -55,10 +55,11 @@ input {
   cursor: pointer;
 }
 #sign-in {
+  height: 50px;
   margin-left: 120px;
   border: 1px solid blue;
   color: blue;
-  width: 90px;
+  width: 200px;
 }
 #sign-in:hover {
   background-color: lightblue;

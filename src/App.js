@@ -5,6 +5,8 @@ import Search from './Search/Search';
 import { useState } from 'react';
 import VideoListResults from './VideoListResults/VideoListResults';
 import TagsBar from './Tags/TagsBar';
+import { BrowserRouter, Routes,Route } from 'react-router-dom';
+import ShrinkedLeftMenu from './LeftMenu/ShrinkedLeftMenu';
 
 function App() {
 
@@ -14,17 +16,21 @@ function App() {
     }
 
     return (
-        
         <div className="container-fluid">
             <div className="row">
-                <LeftMenu/>
-                <div id="right" className="col main-content">
-                    <Search doSearch={doSearch}></Search>
-                    <TagsBar></TagsBar>
-                    <VideoListResults videos={videoList}/>
-                </div>
-                </div>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<LeftMenu/>}></Route>
+                        <Route path="/no-menu" element={<ShrinkedLeftMenu/>}></Route>
+                    </Routes>
+                    <div id="right" className="col main-content">
+                        <Search doSearch={doSearch}></Search>
+                        <TagsBar></TagsBar>
+                        <VideoListResults videos={videoList}/>
+                    </div>
+                </BrowserRouter>
             </div>
+        </div>
     );
 }
 
