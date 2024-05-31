@@ -6,12 +6,12 @@
     background-color: lightgray;
     cursor: pointer;
   }
-  .card:hover {
+  #video:hover {
     background-color: lightgray;
     width: 320px;
     cursor: pointer;
   }
-  .card {
+  #video {
     width: 300px;
     margin: 10px;
   }
