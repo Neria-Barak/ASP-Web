@@ -3,7 +3,7 @@ import './SignInPage.css';
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-function SignIn({onSignIn}) {
+function SignIn({onSignIn, users}) {
     
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -17,6 +17,11 @@ function SignIn({onSignIn}) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        const user = users.find(user => user.username === username && user.password === password);
+        if (!user) {
+            setError('Invalid username or password');
+            return;
+        }
         onSignIn(username, password);
         navigateToMain();
     };

@@ -33,7 +33,7 @@ function App() {
           <BrowserRouter>
               <Routes>
                   <Route path="/" element={<MainPage currentUser={currentUser} toggleDarkMode={toggleDarkMode}/>} />
-                  <Route path="/signin" element={<SignIn onSignIn={handleSignIn}/>} />
+                  <Route path="/signin" element={<SignIn onSignIn={handleSignIn} users={users}/>} />
                   <Route path="/signup" element={<SignUp  onSignUp={handleSignUp}/> } />
                   <Route path="/signout" element={<SignOut onSignOut={handleSignOut} /> } />                                        
               </Routes>
