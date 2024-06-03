@@ -17,6 +17,7 @@ function SignOut({onSignOut}) {
     }
 
     return (
+      <div className='signin-page'>
         <div className="container signout-container">
           <div className="row justify-content-center">
             <div className="col-md-6 text-center">
@@ -28,6 +29,7 @@ function SignOut({onSignOut}) {
             </div>
           </div>
         </div>
+      </div>
       );
 }
 

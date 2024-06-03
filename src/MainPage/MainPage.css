@@ -1,75 +1,107 @@
+:root {
+  --background: #f0f2f5;
+  --left-menu-icon-hover: lightgray;
+  --video-hover: lightgray;
+  --tag-background: white;
+  --tag-background-hover: lightgray;
+  --signin-background-hover: lightblue;
+  --signin-text: blue;
+  --tag-border: lightgray;
+  --text: black;
+  --list-border: lightgray;
+}
+[data-theme = 'dark-mode'] {
+  --background: black;
+  --left-menu-icon-hover: darkslategray;
+  --video-hover: darkslategray;
+  --tag-background: #272727;
+  --tag-background-hover: darkslategray;
+  --signin-background-hover: darkslategray;
+  --signin-text: deepskyblue;
+  --tag-border: darkslategray;
+  --text: white;
+  --list-border: darkslategray;
+}
 .list-group-item {
-    border: 0;
-    background-color: transparent;
-  }
-  #LeftMenuIcon:hover {
-    background-color: lightgray;
-    cursor: pointer;
-  }
-  #video:hover {
-    background-color: lightgray;
-    width: 320px;
-    cursor: pointer;
-  }
-  #video {
-    width: 300px;
-    margin: 10px;
-  }
-  .card-text {
-    margin: 3px;
-  }
-  #title {
-    font-size: larger;
-    font-weight: bold;
-  }
-  span {
-    font-size: 25px;
-  }
-  .list-group {
-    border-radius: 0px;
-    border-top: 1px solid lightgray;
-    border-bottom: 1px solid lightgray;
-    border-left: none;
-    border-right: none;
-  }
-  input {
-    height: 50px;
-  }
-  #left, #right {
-    max-height: 100vh;
-    overflow-y: scroll;
-  }
-  .tag {
-    width: fit-content;
-    font-size: 15px;
-    font-weight: bold;
-    margin: 10px;
-    background-color: white;
-    padding: 10px;
-    border: 1px solid lightgray;
-    border-radius: 100px;
-    width: fit-content;
-  }
-  .tag:hover{
-    background-color: lightgray;
-    cursor: pointer;
-  }
-  #sign-in {
-    height: 50px;
-    margin-left: 120px;
-    border: 1px solid blue;
-    color: blue;
-    width: 200px;
-  }
-  #sign-in:hover {
-    background-color: lightblue;
-  }
+  border: 0;
+  background-color: transparent;
+}
+#LeftMenuIcon {
+  color: var(--text);
+}
+#LeftMenuIcon:hover {
+  background-color: var(--left-menu-icon-hover);
+  cursor: pointer;
+}
+#video:hover {
+  background-color: var(--video-hover);
+  width: 320px;
+  cursor: pointer;
+}
+#video {
+  background-color: transparent;
+  width: 300px;
+  margin: 10px;
+}
+.card-text {
+  color: var(--text);
+  margin: 3px;
+}
+#title {
+  font-size: larger;
+  font-weight: bold;
+}
+span {
+  font-size: 25px;
+}
+.list-group {
+  border-radius: 0px;
+  border-top: 1px solid var(--list-border);
+  border-bottom: 1px solid var(--list-border);
+  border-left: none;
+  border-right: none;
+}
+input {
+  height: 50px;
+}
+#left, #right {
+  max-height: 100vh;
+  overflow-y: scroll;
+}
+.tag {
+  width: fit-content;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 10px;
+  background-color: var(--tag-background);
+  padding: 10px;
+  border: 1px solid var(--tag-border);
+  border-radius: 100px;
+  width: fit-content;
+}
+.tag:hover{
+  background-color: var(--tag-background-hover);
+  cursor: pointer;
+}
+#sign-in {
+  background-color: transparent;
+  height: 50px;
+  margin-left: 10vw;
+  border: 1px solid var(--signin-text);
+  color: var(--signin-text);
+  width: 200px;
+  margin-right: 5vw;
+}
+#sign-in:hover {
+  background-color: var(--signin-background-hover);
+}
 
 .logo {
   width: 70px;
   margin-right: 10px;
 }
 .Youtube {
+  color: var(--text);
   font-size: 40px;
   font-weight: bold;
 }
@@ -86,4 +118,32 @@
 }
 #profile-picture:hover {
   cursor: pointer;
+}
+#search-bar {
+  color: var(--text);
+  background-color: transparent;
+}
+#search-group {
+  margin-left: 10vw;
+  width: 30vw;
+  color: var(--text);
+}
+
+#main-page {
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: var(--text);
+}
+#switch-mode {
+  margin-left: 10vw;
+  border-radius: 100px;
+  background-color: transparent;
+  color: var(--text);
+  border-color: var(--tag-border);
+}
+
+::-webkit-scrollbar {
+  display: none;
 }

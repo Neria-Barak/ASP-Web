@@ -2,10 +2,14 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #f0f2f5;
+    height: 100vh;
+}
+.signin-page {
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 
 .signin-container {
@@ -14,7 +18,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 60vw;
-    height: 50vh;
+    height: 70vh;
 }
 
 .signin-form {
@@ -74,10 +78,7 @@ h3 {
 }
 .right-group {
     margin-left: auto; 
-    margin-right: 0; 
-    margin-top: 100px;
-    position: relative;
-    top: 20%;      
+    margin-right: 0;     
 }
 .left-group {
     margin-left: 0; 
@@ -86,6 +87,7 @@ h3 {
     top: 40%; 
 }
 .signout-container {
+    position: relative;
     background-color: #fff;
     padding: 2rem;
     border-radius: 8px;
