@@ -3,7 +3,7 @@ import './SignInPage.css';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-function SignUp() {
+function SignUp({onSignUp}) {
 
     let navigate = useNavigate();
 
@@ -13,11 +13,20 @@ function SignUp() {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [profilePicture, setProfilePicture] = useState('');
     const [error, setError] = useState('');
 
     const validatePassword = (password) => {
         const passwordRegex = /^(?=.*\d)[A-Za-z\d]{8,16}$/;
         return passwordRegex.test(password);
+    };
+
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+          const fileURL = URL.createObjectURL(file);
+          setProfilePicture(fileURL);
+        }
     };
 
     const handleSubmit = (event) => {
@@ -26,9 +35,11 @@ function SignUp() {
             setError('Password must be 8-16 characters long and contain at least one number.');
             return;
         }
-        console.log('Username:', username);
-        console.log('Password:', password);
+        console.log(username);
+        console.log(password);
         setError('');
+        const newUser = { username, password, profilePicture };
+        onSignUp(newUser);
         navigateToMain();
     };
 
@@ -40,6 +51,11 @@ function SignUp() {
                     <h3>to continue to youtube</h3>
                 </div>
                 <div className='right-group'>
+                    <div className="input-group mb-3">
+                        <label htmlFor="profilePicture">Profile Picture</label>
+                        <input type="file" className="form-control" id="inputGroupFile02" onChange={handleFileChange}></input>
+                        <label className="input-group-text" htmlFor="inputGroupFile02">Upload</label>
+                    </div>
                     <div className="form-group">
                         <label htmlFor="username">Username</label>
                         <input
@@ -61,8 +77,7 @@ function SignUp() {
                         />
                     </div>
                     {error && <div className="alert alert-danger">{error}</div>}
-                    <div class="submit">
-                        <a href='/signup' className='card-link'>Create account</a>
+                    <div className="submit">
                         <button type="submit" className="signin-button">Sign Up</button>
                     </div>
                 </div>

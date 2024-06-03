@@ -2,13 +2,13 @@ import './MainPage.css';
 import LeftMenu from './LeftMenu/LeftMenu';
 import MainContent from './MainContent';
 
-function MainPage() {
+function MainPage({currentUser}) {
 
     return (
         <div className="container-fluid">
             <div className="row">
                 <LeftMenu/>
-                <MainContent></MainContent>
+                <MainContent currentUser={currentUser}></MainContent>
             </div>
         </div>
     );

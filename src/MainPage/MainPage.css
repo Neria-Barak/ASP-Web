@@ -64,4 +64,26 @@
   #sign-in:hover {
     background-color: lightblue;
   }
-  
+
+.logo {
+  width: 70px;
+  margin-right: 10px;
+}
+.Youtube {
+  font-size: 40px;
+  font-weight: bold;
+}
+.name-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#profile-picture {
+  margin-left: 150px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+#profile-picture:hover {
+  cursor: pointer;
+}

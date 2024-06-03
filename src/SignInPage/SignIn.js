@@ -1,9 +1,13 @@
 import React from 'react';
 import './SignInPage.css';
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 
-function SignIn() {
+function SignIn({onSignIn}) {
+    
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     let navigate = useNavigate();
 
@@ -11,12 +15,10 @@ function SignIn() {
         navigate('/');
     };
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-
     const handleSubmit = (event) => {
-        setError('Username doesn\'nt exist');
+        event.preventDefault();
+        onSignIn(username, password);
+        navigateToMain();
     };
 
     return (
@@ -48,8 +50,8 @@ function SignIn() {
                         />
                     </div>
                     {error && <div className="alert alert-danger">{error}</div>}
-                    <div class="submit">
-                        <a href='/signup' className='card-link'>Create account</a>
+                    <div className="submit">
+                        <Link to='/signup' className='card-link'>Create account</Link>
                         <button type="submit" className="signin-button">Sign In</button>
                     </div>
                 </div>

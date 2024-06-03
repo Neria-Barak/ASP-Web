@@ -6,6 +6,10 @@ function LeftMenu() {
         <>
             <div id="left" className="col-2 bg-light vh-100">
                 <ul className="list-group">
+                    <li className="name-logo">
+                        <img src="favicon.ico" alt="..." className="logo"></img>
+                        <div className="Youtube">YouTube</div>
+                    </li>
                     <li className="list-group-item">
                         <ul className="list-group">
                             <LeftMenuIcon text={"Home"} icon={"house-fill"}/>
