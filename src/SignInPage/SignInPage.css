@@ -1,0 +1,106 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    height: 100vh;
+}
+.signin-page {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signin-container {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 60vw;
+    height: 70vh;
+}
+
+.signin-form {
+    display: flex;
+    justify-content: space-between;
+}
+
+h2 {
+    margin-bottom: 10px;
+    font-size: 40px;
+}
+h3 {
+    margin-bottom: 30px;
+    font-size: 20px;
+}
+
+.form-group {
+    width: 20vw;
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    margin-bottom: 10px;
+    color: gray;
+}
+
+.form-group input {
+    width: 20vw;
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+}
+
+.signin-button {
+    float: right;
+    margin-left: 20px;
+    width: 10vw;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.signin-button:hover {
+    background-color: #0056b3;
+}
+.signin-form a{
+    text-decoration:none;
+}
+.submit {
+
+    justify-self: flex-end;
+}
+.right-group {
+    margin-left: auto; 
+    margin-right: 0;     
+}
+.left-group {
+    margin-left: 0; 
+    margin-right: auto;   
+    position: absolute;
+    top: 40%; 
+}
+.signout-container {
+    position: relative;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 20vw;
+    height: 50vh;
+  }
+.sign-out-btn {
+    margin-top: 50px;
+    margin-right: 2px;
+}
+.cancel-btn {
+    margin-left: 40px;
+    margin-top: 50px;
+}
+  
