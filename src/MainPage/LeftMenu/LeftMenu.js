@@ -1,6 +1,12 @@
 import LeftMenuIcon from "./LeftMenuIcon";
+import { useNavigate } from "react-router-dom"; 
 
 function LeftMenu() {
+
+    const navigate = useNavigate();
+    const navigateToAddVid = () => {
+        navigate('/addvideo');
+    }
 
     return (
         <>
@@ -16,6 +22,9 @@ function LeftMenu() {
                     </li>
                     <li className="list-group-item">
                         <ul className="list-group">
+                            <div className="add-video-btn" onClick={navigateToAddVid}>
+                                <LeftMenuIcon text={"Add Video"} icon={"plus-circle"}/>
+                            </div>
                             <LeftMenuIcon text={"Your channel"} icon={"person-square"}/>
                             <LeftMenuIcon text={"History"} icon={"clock"}/>
                             <LeftMenuIcon text={"Playlists"} icon={"list"}/>

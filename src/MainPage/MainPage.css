@@ -88,6 +88,7 @@ input {
   color: var(--signin-text);
   width: 200px;
   margin-right: 5vw;
+  font-size: 25px;
 }
 #sign-in:hover {
   background-color: var(--signin-background-hover);

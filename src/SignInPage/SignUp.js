@@ -26,6 +26,7 @@ function SignUp({onSignUp}) {
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {
+          console.log(file);
           const fileURL = URL.createObjectURL(file);
           setProfilePicture(fileURL);
         }

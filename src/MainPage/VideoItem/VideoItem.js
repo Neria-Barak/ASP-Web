@@ -5,7 +5,7 @@ function VideoItem({title, author, views, time, img}) {
             <div className="card-body">
                 <p id="title" className="card-text">{title}</p>
                 <p className="card-text">{author}</p>
-                <p className="card-text">{views} views. {time} ago</p>
+                <p className="card-text">{views} views. {time} ago.</p>
             </div>
         </div>
     )
