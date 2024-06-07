@@ -28,6 +28,7 @@
 }
 #LeftMenuIcon {
   color: var(--text);
+  font-size: 20px;
 }
 #LeftMenuIcon:hover {
   background-color: var(--left-menu-icon-hover);
@@ -35,7 +36,6 @@
 }
 #video:hover {
   background-color: var(--video-hover);
-  width: 320px;
   cursor: pointer;
 }
 #video {
@@ -50,9 +50,6 @@
 #title {
   font-size: larger;
   font-weight: bold;
-}
-span {
-  font-size: 25px;
 }
 .list-group {
   border-radius: 0px;

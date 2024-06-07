@@ -8,7 +8,7 @@ import { useState } from "react";
 function App() {
     const [currentUser, setCurrentUser] = useState(null);
     const [users, setUsers] = useState([]);
-    const [isDark, setIsDark] = useState(true);
+    const [isDark, setIsDark] = useState(false);
 
     const handleSignIn = (username, password) => {
       const user = users.find(user => user.username === username && user.password === password);
