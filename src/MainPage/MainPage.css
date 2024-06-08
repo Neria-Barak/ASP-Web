@@ -35,7 +35,6 @@
 }
 #video:hover {
   background-color: var(--video-hover);
-  width: 320px;
   cursor: pointer;
 }
 #video {

@@ -1,16 +1,9 @@
 import './MainPage.css';
 import LeftMenu from './LeftMenu/LeftMenu';
 import MainContent from './MainContent';
-import videos from './VideoItem/videos';
 import Search from './Search/Search';
-import { useState } from 'react';
 
-function MainPage({currentUser, toggleDarkMode}) {
-
-    const [videoList, setVideoList] = useState(videos.videos);
-    const doSearch = function(q) {
-        setVideoList(videos.videos.filter((video) => video.title.includes(q)));
-    }
+function MainPage({videoList, doSearch, currentUser, toggleDarkMode}) {
 
     return (
         <div className="container-fluid" id='main-page'>
