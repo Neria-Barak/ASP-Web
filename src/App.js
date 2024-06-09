@@ -10,7 +10,7 @@ import VideoView from "./VideoViewPage/VideoView";
 function App() {
     const [currentUser, setCurrentUser] = useState(null);
     const [users, setUsers] = useState([]);
-    const [isDark, setIsDark] = useState(true);
+    const [isDark, setIsDark] = useState(false);
     const [videoList, setVideoList] = useState(videos.videos);
 
     const doSearch = function(q) {
@@ -43,7 +43,7 @@ function App() {
                   <Route path="/signin" element={<SignIn onSignIn={handleSignIn} users={users}/>} />
                   <Route path="/signup" element={<SignUp  onSignUp={handleSignUp}/> } />
                   <Route path="/signout" element={<SignOut onSignOut={handleSignOut} /> } />
-                  <Route path="/watch/:id" element={<VideoView videos={videoList}/> } />                                        
+                  <Route path="/watch/:id" element={<VideoView videos={videoList} currentUser={currentUser} toggleDarkMode={toggleDarkMode}/> } />                                        
               </Routes>
           </BrowserRouter>
         </div>

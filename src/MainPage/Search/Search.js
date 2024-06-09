@@ -16,16 +16,19 @@ function Search({doSearch, currentUser, toggleDarkMode}) {
     const navigateToSignOut = () => {
         navigate('/signout');
     };
+    const navigateToMain = () => {
+        navigate('/');
+    };
 
     return(
         <div className="justify-content-center">
-            <div className="d-flex align-items-center mb-3 p-2" id="head">
-                <div className="name-logo">
-                    <img src="favicon.ico" alt="..." className="logo"></img>
+            <div className="d-flex align-items-center" id="head">
+                <div className="name-logo" onClick={navigateToMain}>
+                    <img src="/favicon.ico" alt="..." className="logo"></img>
                     <div className="Youtube">YouTube</div>
                 </div>
-                <div class="form-check form-switch" id="switch-mode">
-                    <input onChange={toggleDarkMode} class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                <div className="form-check form-switch" id="switch-mode">
+                    <input onChange={toggleDarkMode} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
                 </div>
                 <i className={`bi bi-moon fs-3`}></i>
                 <div className="input-group mb-3 p-2" id="search-group">

@@ -108,6 +108,7 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 #profile-picture {
   margin-left: 150px;
