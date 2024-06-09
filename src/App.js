@@ -40,10 +40,8 @@ function App() {
     };
     const handleSignOut = () => setCurrentUser(null);
     const handleSignUp = (newUser) => {
-        console.log(newUser);
         setUsers([...users, newUser]);
         setCurrentUser(newUser);
-        console.log(users);
     };
 
     const toggleDarkMode = () => {setIsDark(!isDark)};

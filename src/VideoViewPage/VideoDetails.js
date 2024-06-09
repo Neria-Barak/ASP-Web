@@ -30,17 +30,17 @@ const VideoDetails = ({ video }) => {
                     )}
             </div>
         </div>
-        <div className='share' data-toggle="modal" data-target="#exampleModal">
+        <div className='share' data-toggle="modal" data-target="#share-modal">
             <i className="bi bi-box-arrow-up-right fs-3" ></i>
             <span>Share</span>
         </div>
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Share</h5>
+        <div className="modal fade" id="share-modal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog" role="document">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLabel">Share</h5>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
                         <div>Copy link: https://youtube/a-link-that-shouldnt-work</div>
                         <div className='share-options'>
                             <i className="bi bi-whatsapp fs-3" ></i>
@@ -50,8 +50,8 @@ const VideoDetails = ({ video }) => {
                             <i className="bi bi-twitter-x fs-3" ></i>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>

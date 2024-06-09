@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Search from '../MainPage/Search/Search';
 import VideoList from './VideoList/VideoList'
-import './VideoView.css';
 import CommentSection from './CommentSection.js';
 import VideoDetails from './VideoDetails.js';
+import './VideoView.css';
 
 function VideoView({videos, currentUser, toggleDarkMode, updateComments}) {
     const { id } = useParams();

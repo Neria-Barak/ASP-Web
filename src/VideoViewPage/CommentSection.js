@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 const CommentSection = ({comments, updateComments}) => {
@@ -7,6 +7,10 @@ const CommentSection = ({comments, updateComments}) => {
     const [commentList, setCommentList] = useState(comments);
     const [editingIndex, setEditingIndex] = useState(null);
     const [editingComment, setEditingComment] = useState('');
+
+    useEffect(() => {
+        setCommentList(comments);
+    }, [comments]);
 
     const handleInputChange = (e) => {
         setNewComment(e.target.value);
