@@ -144,4 +144,19 @@ video {
     border: 1px solid #ccc;
     border-radius: 5px;
   }
+
+  .video-list-item img{
+    width: 150px;
+    margin-right: 10px;
+  } 
+  .video-list-item {
+    width: 100%;
+    display: flex;
+    margin: 10px 0;
+  }
+  .video-list-item:hover {
+    cursor: pointer;
+    background-color: lightgray;
+  }
+
   

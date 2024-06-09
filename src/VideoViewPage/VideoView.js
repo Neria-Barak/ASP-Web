@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Search from '../MainPage/Search/Search';
+import VideoList from './VideoList/VideoList'
 import VideoInfo from './VideoInfo.js';
 import './VideoView.css';
 import CommentSection from './CommentSection.js';
@@ -13,6 +14,8 @@ function VideoView({videos, currentUser, toggleDarkMode, updateComments}) {
         const foundVideo = videos.find(vid => vid.id.toString() === id);
         setVideo(foundVideo);
     }, [id, videos]);
+
+
 
     if (!video) return (<div>Loading ...</div>);
     return (
@@ -27,7 +30,7 @@ function VideoView({videos, currentUser, toggleDarkMode, updateComments}) {
                     <CommentSection comments={video.comments} updateComments={updateComments}/>
                 </div>
                 <div className='col-4' id="videos-scroll">
-                    <span>hello</span>
+                    <VideoList videos={videos.filter(v => v.id !== video.id)}/>
                 </div>
             </div>
         </div>
