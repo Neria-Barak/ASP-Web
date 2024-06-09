@@ -3,8 +3,9 @@ import { useParams } from 'react-router-dom';
 import Search from '../MainPage/Search/Search';
 import VideoInfo from './VideoInfo.js';
 import './VideoView.css';
+import CommentSection from './CommentSection.js';
 
-function VideoView({videos, currentUser, toggleDarkMode}) {
+function VideoView({videos, currentUser, toggleDarkMode, updateComments}) {
     const { id } = useParams();
     const [video, setVideo] = useState(null);
 
@@ -23,6 +24,7 @@ function VideoView({videos, currentUser, toggleDarkMode}) {
                 <div className='col-8 bg-transparent vh-100' id="video-section">
                     <video src={video.video} controls></video>
                     <VideoInfo video={video}/>
+                    <CommentSection comments={video.comments} updateComments={updateComments}/>
                 </div>
                 <div className='col-4' id="videos-scroll">
                     <span>hello</span>

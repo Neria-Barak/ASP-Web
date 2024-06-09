@@ -17,6 +17,19 @@ function App() {
         setVideoList(videos.videos.filter((video) => video.title.includes(q)));
     }
 
+    const updateVideoComments = (id, updatedComments) => {
+        const updatedVideoList = videoList.map(video => {
+            if (video.id.toString() === id) {
+                return {
+                ...video,
+                comments: updatedComments
+                };
+            }
+            return video;
+        });
+        setVideoList(updatedVideoList);
+    };
+
     const handleSignIn = (username, password) => {
       const user = users.find(user => user.username === username && user.password === password);
       if (user) {
@@ -43,7 +56,7 @@ function App() {
                   <Route path="/signin" element={<SignIn onSignIn={handleSignIn} users={users}/>} />
                   <Route path="/signup" element={<SignUp  onSignUp={handleSignUp}/> } />
                   <Route path="/signout" element={<SignOut onSignOut={handleSignOut} /> } />
-                  <Route path="/watch/:id" element={<VideoView videos={videoList} currentUser={currentUser} toggleDarkMode={toggleDarkMode}/> } />                                        
+                  <Route path="/watch/:id" element={<VideoView videos={videoList} currentUser={currentUser} toggleDarkMode={toggleDarkMode} updateComments={updateVideoComments}/> } />                                        
               </Routes>
           </BrowserRouter>
         </div>
