@@ -30,9 +30,9 @@ video {
     width: 100%;
     margin: 20px auto;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--tag-border);
     border-radius: 10px;
-    background-color: #f9f9f9;
+    background-color: var(--card-background);
   }
   
   .comment-form {
@@ -43,9 +43,11 @@ video {
   .comment-input {
     flex: 1;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--tag-border);
     border-radius: 5px;
     margin-right: 10px;
+    background-color: var(--input-background);
+    color: var(--text);
   }
   
   .comment-submit-button {
@@ -68,7 +70,7 @@ video {
   
   .comment-item {
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--tag-border);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -141,8 +143,10 @@ video {
   .comment-edit-input {
     flex: 1;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--tag-border);
     border-radius: 5px;
+    background-color: var(--input-background);
+    color: var(--text)
   }
 
   .video-list-item img{
@@ -156,14 +160,14 @@ video {
   }
   .video-list-item:hover {
     cursor: pointer;
-    background-color: lightgray;
+    background-color: var(--video-hover);
   }
 
 .video-details {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    background-color: #f5f5f5;
+    background-color: var(--card-background);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -177,7 +181,7 @@ video {
 
 .video-author {
     font-size: 18px;
-    color: #555;
+    color: var(--author-color);
     margin: 0 0 5px;
 }
 
@@ -199,5 +203,15 @@ video {
 }
 .share-options {
     margin-top: 10px;
+}
+.video-view-page {
+    background-color: var(--background);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: var(--text);
+}
+.modal-content {
+    background-color: var(--card-background);
 }
   

@@ -19,7 +19,7 @@ function VideoView({videos, currentUser, toggleDarkMode, updateComments}) {
 
     if (!video) return (<div>Loading ...</div>);
     return (
-        <div>
+        <div className='video-view-page'>
             <div className='row'>
                 <Search doSearch={() => {}} currentUser={currentUser} toggleDarkMode={toggleDarkMode}></Search>
             </div>

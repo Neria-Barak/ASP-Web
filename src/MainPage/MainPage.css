@@ -9,6 +9,9 @@
   --tag-border: lightgray;
   --text: black;
   --list-border: lightgray;
+  --card-background: #f5f5f5;
+  --author-color: #555;
+  --input-background: white;
 }
 [data-theme = 'dark-mode'] {
   --background: black;
@@ -21,6 +24,9 @@
   --tag-border: darkslategray;
   --text: white;
   --list-border: darkslategray;
+  --card-background: #1a1a1a;
+  --author-color: #999;
+  --input-background: black;
 }
 .list-group-item {
   border: 0;
