@@ -9,10 +9,6 @@ function TagsBar() {
             <Tag text="Sports"></Tag>
             <Tag text="Live"></Tag>
             <Tag text="Music"></Tag>
-            <Tag text="Games"></Tag>
-            <Tag text="Mixes"></Tag>
-            <Tag text="Podcasts"></Tag>
-            <Tag text="Comedy clubs"></Tag>
             <Tag text="Recently uploaded"></Tag>
             <Tag text="Watched"></Tag>
             <Tag text="New to you"></Tag>

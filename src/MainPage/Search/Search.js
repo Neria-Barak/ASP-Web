@@ -24,8 +24,8 @@ function Search({doSearch, currentUser, toggleDarkMode}) {
                     <img src="favicon.ico" alt="..." className="logo"></img>
                     <div className="Youtube">YouTube</div>
                 </div>
-                <div class="form-check form-switch" id="switch-mode">
-                    <input onChange={toggleDarkMode} class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                <div className="form-check form-switch" id="switch-mode">
+                    <input onChange={toggleDarkMode} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
                 </div>
                 <i className={`bi bi-moon fs-3`}></i>
                 <div className="input-group mb-3 p-2" id="search-group">

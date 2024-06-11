@@ -26,6 +26,7 @@ function SignUp({onSignUp}) {
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {
+          console.log(file);
           const fileURL = URL.createObjectURL(file);
           setProfilePicture(fileURL);
         }
@@ -52,7 +53,7 @@ function SignUp({onSignUp}) {
     return (
         <div className='signin-page'>
             <div className="signin-container">
-                <form className="signin-form" onSubmit={handleSubmit}>
+                <form id="signup" className="signin-form" onSubmit={handleSubmit}>
                     <div className='left-group'>
                         <h2>Sign Up</h2>
                         <h3>to continue to youtube</h3>
