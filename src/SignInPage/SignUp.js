@@ -26,7 +26,6 @@ function SignUp({onSignUp}) {
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {
-          console.log(file);
           const fileURL = URL.createObjectURL(file);
           setProfilePicture(fileURL);
         }
@@ -42,8 +41,6 @@ function SignUp({onSignUp}) {
             setError('Password must be 8-16 characters long and contain at least one number.');
             return;
         }
-        console.log(username);
-        console.log(password);
         setError('');
         const newUser = { username, visibleName, password, profilePicture };
         onSignUp(newUser);

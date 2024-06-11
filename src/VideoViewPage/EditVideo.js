@@ -20,7 +20,6 @@ function EditVideo({videos, editVideo}) {
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            console.log(file);
             const fileURL = URL.createObjectURL(file);
             const { name } = e.target;
             setFormData({ ...formData, [name]: fileURL });
