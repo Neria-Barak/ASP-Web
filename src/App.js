@@ -4,6 +4,7 @@ import SignUp from "./SignInPage/SignUp";
 import SignOut from "./SignInPage/SignOut";
 import videos from './MainPage/VideoItem/videos';
 import EditVideo from "./VideoViewPage/EditVideo";
+import AddVideo from "./AddVideoPage/AddVideo";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useState } from "react";
 import VideoView from "./VideoViewPage/VideoView";
@@ -47,6 +48,17 @@ function App() {
         });
         setVideoList(updatedVideoList);
     };
+    const addVideo = ({ title, author, img, description, video }) => {
+        setVideoList([ {"title": title,
+                        "author": author,
+                        "views": 0,
+                        "time": "1 second",
+                        "img": img,
+                        "description": description,
+                        "video": video,
+                        "id": (videoList.length + 1)}
+                        , ...videoList])
+    }
 
     const handleSignIn = (username, password) => {
       const user = users.find(user => user.username === username && user.password === password);
@@ -74,6 +86,7 @@ function App() {
                   <Route path="/signout" element={<SignOut onSignOut={handleSignOut} /> } />
                   <Route path="/watch/:id" element={<VideoView videos={videoList} currentUser={currentUser} toggleDarkMode={toggleDarkMode} updateComments={updateVideoComments}/> } />                                        
                   <Route path="/edit/:id" element={<EditVideo videos={videoList} editVideo={editVideo}/>}></Route>
+                  <Route path="/addvideo" element={<AddVideo addVideo={addVideo}/> } />                                            
               </Routes>
           </BrowserRouter>
         </div>

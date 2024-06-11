@@ -21,7 +21,7 @@ function SignOut({onSignOut}) {
         <div className="container signout-container">
           <div className="row justify-content-center">
             <div className="col-md-6 text-center">
-              <h2>Are you sure you want to sign out?</h2>
+              <span id='signout-message'>Are you sure you want to sign out?</span>
               <div className="btn-group mt-4">
                 <button className="btn btn-primary sign-out-btn" onClick={handleSignOut}>Sign Out</button>
                 <button className="btn btn-secondary cancel-btn" onClick={handleCancel}>Cancel</button>
