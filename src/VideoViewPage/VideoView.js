@@ -15,8 +15,6 @@ function VideoView({videos, currentUser, toggleDarkMode, updateComments}) {
         setVideo(foundVideo);
     }, [id, videos]);
 
-
-    console.log(videos);
     if (!video) return (<div>Loading ...</div>);
     return (
         <div className='video-view-page'>

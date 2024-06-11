@@ -17,8 +17,7 @@ function AddVideo({addVideo}) {
   };
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    if (file) {
-        console.log(file);
+    if (file) {;
         const fileURL = URL.createObjectURL(file);
         const { name } = e.target;
         setFormData({ ...formData, [name]: fileURL });
