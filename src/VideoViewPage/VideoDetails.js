@@ -1,10 +1,16 @@
 import React from 'react';
 import './VideoView.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const VideoDetails = ({ video }) => {
     const [like, setLike] = useState(false);
     const [dislike, setDislike] = useState(false);
+
+    const navigate = useNavigate();
+    const edit = () => {
+        navigate(`/edit/${video.id}`)
+    }
 
   return (
     <div className="video-details">
@@ -55,6 +61,10 @@ const VideoDetails = ({ video }) => {
                     </div>
                 </div>
             </div>
+        </div>
+        <div className='share' onClick={edit}>
+            <i className="bi bi-pencil-square fs-3" ></i>
+            <span>Edit</span>
         </div>
       </div>
     </div>

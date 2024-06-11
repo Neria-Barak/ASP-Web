@@ -3,6 +3,7 @@ import SignIn from "./SignInPage/SignIn";
 import SignUp from "./SignInPage/SignUp";
 import SignOut from "./SignInPage/SignOut";
 import videos from './MainPage/VideoItem/videos';
+import EditVideo from "./VideoViewPage/EditVideo";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useState } from "react";
 import VideoView from "./VideoViewPage/VideoView";
@@ -26,6 +27,23 @@ function App() {
                 };
             }
             return video;
+        });
+        setVideoList(updatedVideoList);
+    };
+
+    const editVideo = ({ id, title, author, img, description, video }) => {
+        const updatedVideoList = videoList.map(vid => {
+            if (vid.id.toString() === id) {
+                return {
+                    ...vid,
+                    title: title,
+                    author: author,
+                    img: img,
+                    description: description,
+                    video: video
+                };
+            }
+            return vid;
         });
         setVideoList(updatedVideoList);
     };
@@ -55,6 +73,7 @@ function App() {
                   <Route path="/signup" element={<SignUp  onSignUp={handleSignUp}/> } />
                   <Route path="/signout" element={<SignOut onSignOut={handleSignOut} /> } />
                   <Route path="/watch/:id" element={<VideoView videos={videoList} currentUser={currentUser} toggleDarkMode={toggleDarkMode} updateComments={updateVideoComments}/> } />                                        
+                  <Route path="/edit/:id" element={<EditVideo videos={videoList} editVideo={editVideo}/>}></Route>
               </Routes>
           </BrowserRouter>
         </div>
