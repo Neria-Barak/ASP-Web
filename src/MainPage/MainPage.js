@@ -5,7 +5,6 @@ import Search from './Search/Search';
 
 function MainPage({videoList, doSearch, currentUser, toggleDarkMode}) {
 
-
     return (
         <div className="container-fluid" id='main-page'>
             <div className='row'>
