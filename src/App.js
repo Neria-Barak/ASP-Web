@@ -66,6 +66,11 @@ function App() {
                         , ...videoList])
     }
 
+    const deleteVideo = (id) => {
+        const updatedVideoList = videoList.filter(video => video.id !== parseInt(id));
+        setVideoList(updatedVideoList);
+    };
+
     const handleSignIn = (username, password) => {
       const user = users.find(user => user.username === username && user.password === password);
       if (user) {
@@ -91,7 +96,7 @@ function App() {
                   <Route path="/signup" element={<SignUp  onSignUp={handleSignUp}/> } />
                   <Route path="/signout" element={<SignOut onSignOut={handleSignOut} /> } />
                   <Route path="/watch/:id" element={<VideoView videos={videoList} currentUser={currentUser} toggleDarkMode={toggleDarkMode} updateComments={updateVideoComments}/> } />                                        
-                  <Route path="/edit/:id" element={<EditVideo videos={videoList} editVideo={editVideo}/>}></Route>
+                  <Route path="/edit/:id" element={<EditVideo videos={videoList} editVideo={editVideo} deleteVideo={deleteVideo}/>}></Route>
                   <Route path="/addvideo" element={<AddVideo addVideo={addVideo}/> } />                                            
               </Routes>
           </BrowserRouter>

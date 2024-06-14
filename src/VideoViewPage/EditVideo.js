@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-function EditVideo({videos, editVideo}) {
+function EditVideo({videos, editVideo, deleteVideo}) {
     const { id } = useParams();
     const video = videos.find(element => element.id.toString() === id);
 
@@ -35,6 +35,11 @@ function EditVideo({videos, editVideo}) {
         editVideo({id, title, author, img, description, video});
         navigate(`/watch/${id}`);
     };
+
+    const handleDelete = () => {
+      deleteVideo(id);
+      navigate('/');
+  };
 
     return (
         <div className="add-video-container">
@@ -90,6 +95,7 @@ function EditVideo({videos, editVideo}) {
               />
             </div>
             <button type="submit">Edit Video</button>
+            <button className="delete" onClick={handleDelete}>Delete Video</button>
           </form>
         </div>
       );

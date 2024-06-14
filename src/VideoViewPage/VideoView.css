@@ -256,3 +256,11 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+.delete {
+  background-color: red;
+  float: right;
+}
+.delete:hover {
+  background-color: #e53935;
+}
