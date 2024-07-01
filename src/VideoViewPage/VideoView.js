@@ -28,7 +28,7 @@ function VideoView({videos, currentUser, toggleDarkMode, updateComments}) {
                     <CommentSection comments={video.comments} updateComments={updateComments}/>
                 </div>
                 <div className='col-4' id="videos-scroll">
-                    <VideoList videos={videos.filter(v => v.id !== video.id)}/>
+                    <VideoList currentVideoId={id}/>
                 </div>
             </div>
         </div>

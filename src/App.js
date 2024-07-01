@@ -16,14 +16,13 @@ function App() {
     const [isDark, setIsDark] = useState(false);
     const [videoList, setVideoList] = useState([]);
     const [visibleVideoList, setVisibleVideoList] = useState([]);
-    const [token, setToken] = useState(localStorage.getItem('token') || null);
+    
 
     useEffect(() => {
         checkUserLoggedIn();
     
         axios.get('/videos')
             .then(response => {
-                console.log('Received videos from server: ', response.data)
                 setVideoList(response.data);
                 setVisibleVideoList(response.data);
             })
@@ -33,7 +32,7 @@ function App() {
 
     const checkUserLoggedIn = async () => {
         try {
-            const response = await axios.post('/tokens/isLoggedIn');
+            const response = await axios.get('/tokens');
             if (response.status === 200) {
                 console.log(response.data.user);
                 setCurrentUser(response.data.user);
@@ -64,14 +63,10 @@ function App() {
     };
 
     const editVideo = (updatedVideo) => {
-        axios.patch(`/videos/${updatedVideo.id}`, updatedVideo)
-            .then(response => {
-                const updatedVideoList = videoList.map(video => 
-                    video._id === updatedVideo.id ? response.data : video
-                );
-                setVideoList(updatedVideoList);
-            })
-            .catch(error => console.error('Error updating video:', error));
+        const updatedVideoList = videoList.map(video => 
+            video._id === updatedVideo._id ? updatedVideo : video
+        );
+        setVideoList(updatedVideoList);
     };
 
     const addVideo = (newVideo) => {
@@ -79,29 +74,22 @@ function App() {
     };
 
     const deleteVideo = (id) => {
-        axios.delete(`/videos/${id}`)
-            .then(() => {
-                setVideoList(videoList.filter(video => video._id !== id));
-            })
-            .catch(error => console.error('Error deleting video:', error));
+        setVideoList(videoList.filter(video => video._id !== id));
     };
 
     const handleSignIn = async (user, token) => {
        setCurrentUser(user);
-       setToken(token);
        localStorage.setItem('token', token);
 
     };
 
     const handleSignOut = () => {
         setCurrentUser(null);
-        setToken(null);
         localStorage.setItem('token', null);
     };
 
     const handleSignUp = (newUser, token) => {
       setCurrentUser(newUser);
-      setToken(token);
       localStorage.setItem('token', token);
     };
 
@@ -118,7 +106,7 @@ function App() {
                     <Route path="/signup" element={<SignUp onSignUp={handleSignUp} />} />
                     <Route path="/signout" element={<SignOut onSignOut={handleSignOut} />} />
                     <Route path="/watch/:id" element={<VideoView videos={videoList} currentUser={currentUser} toggleDarkMode={toggleDarkMode} updateComments={updateVideoComments} />} />
-                    <Route path="/edit/:id" element={<EditVideo videos={videoList} editVideo={editVideo} deleteVideo={deleteVideo} />} />
+                    <Route path="/edit/:id" element={<EditVideo videos={videoList} editVideo={editVideo} deleteVideo={deleteVideo} currentUser={currentUser} />} />
                     <Route path="/addvideo" element={<AddVideo addVideo={addVideo} currentUser={currentUser} />} />
                 </Routes>
             </BrowserRouter>

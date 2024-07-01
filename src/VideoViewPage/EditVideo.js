@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import axios from '../axiosConfig'
 
-function EditVideo({videos, editVideo, deleteVideo}) {
+function EditVideo({videos, editVideo, deleteVideo, currentUser}) {
     const { id } = useParams();
-    const video = videos.find(element => element.id.toString() === id);
+    const video = videos.find(element => element._id.toString() === id);
 
     const [formData, setFormData] = useState({
         title: video.title,
@@ -31,13 +32,24 @@ function EditVideo({videos, editVideo, deleteVideo}) {
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        var { title, author, img, description, video } = formData;
-        editVideo({id, title, author, img, description, video});
+    
+        axios.patch(`users/${currentUser._id}/videos/${video._id}`, formData)
+        .then(response => {
+            editVideo(response.data.video);
+        })
+        .catch(error => console.error('Error updating video:', error));
+
+
         navigate(`/watch/${id}`);
     };
 
     const handleDelete = () => {
-      deleteVideo(id);
+      axios.delete(`users/${currentUser._id}/videos/${video._id}`)
+      .then(() => {
+          deleteVideo(id);
+      })
+      .catch(error => console.error('Error deleting video:', error));
+
       navigate('/');
   };
 

@@ -4,7 +4,6 @@ import './AddVideo.css';
 import axios from '../axiosConfig';
 
 function AddVideo({addVideo, currentUser}) {
-  console.log("username", currentUser._id);
   const id  = currentUser._id;
   const [formData, setFormData] = useState({
     title: '',
@@ -32,20 +31,18 @@ function AddVideo({addVideo, currentUser}) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    const data = new FormData();
+    data.append('title', formData.title);
+    data.append('author', formData.author);
+    data.append('description', formData.description);
+    if (imgFile) data.append('img', imgFile);
+    if (videoFile) data.append('video', videoFile);
     
     try {
-      const formData = new FormData();
-      formData.append('title', formData.title);
-      formData.append('author',formData.author);
-      
-      formData.append('description', formData.description);
-      if (imgFile) 
-        formData.append('img', imgFile);
-      if (videoFile) 
-        formData.append('video', videoFile);
-
-      const response = await axios.post(`/users/${id}/videos`, formData, {
-       
+      const response = await axios.post(`/users/${id}/videos`, data, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
       });
 
       if (response.status === 200) {

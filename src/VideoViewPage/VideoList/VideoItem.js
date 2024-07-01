@@ -2,9 +2,10 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const VideoListItem = ({ video }) => {
+    
     const navigate = useNavigate();
     const handleClick = () => {
-        navigate(`/watch/${video.id}`)
+        navigate(`/watch/${video._id}`)
     };
 
     return (
