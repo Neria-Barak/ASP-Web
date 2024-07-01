@@ -11,7 +11,7 @@ function VideoView({videos, currentUser, toggleDarkMode, updateComments}) {
     const [video, setVideo] = useState(null);
 
     useEffect(() => {
-        const foundVideo = videos.find(vid => vid.id.toString() === id);
+        const foundVideo = videos.find(vid => vid._id.toString() === id);
         setVideo(foundVideo);
     }, [id, videos]);
 

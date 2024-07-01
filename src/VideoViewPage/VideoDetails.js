@@ -9,7 +9,7 @@ const VideoDetails = ({ video }) => {
 
     const navigate = useNavigate();
     const edit = () => {
-        navigate(`/edit/${video.id}`)
+        navigate(`/edit/${video._id}`)
     }
 
   return (
@@ -21,14 +21,14 @@ const VideoDetails = ({ video }) => {
       </div>
       <div className="video-actions">
         <div>
-            <div id='like' onClick={() => {setLike(!like)}}>
+            <div _id='like' onClick={() => {setLike(!like)}}>
                 {(like === false) ? (
                     <i className="bi bi-hand-thumbs-up fs-3" ></i>
                 ) : (
                     <i className="bi bi-hand-thumbs-up-fill fs-3" ></i>
                     )}
             </div>
-            <div id='dislike' onClick={() => {setDislike(!dislike)}}>
+            <div _id='dislike' onClick={() => {setDislike(!dislike)}}>
                 {(dislike === false) ? (
                     <i className="bi bi-hand-thumbs-down fs-3" ></i>
                 ) : (
@@ -40,11 +40,11 @@ const VideoDetails = ({ video }) => {
             <i className="bi bi-box-arrow-up-right fs-3" ></i>
             <span>Share</span>
         </div>
-        <div className="modal fade" id="share-modal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" _id="share-modal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">Share</h5>
+                        <h5 className="modal-title" _id="exampleModalLabel">Share</h5>
                     </div>
                     <div className="modal-body">
                         <div>Copy link: https://youtube/a-link-that-shouldnt-work</div>

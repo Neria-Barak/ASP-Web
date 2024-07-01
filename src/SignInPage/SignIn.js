@@ -2,8 +2,9 @@ import React from 'react';
 import './SignInPage.css';
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import axios from '../axiosConfig';
 
-function SignIn({onSignIn, users}) {
+function SignIn({onSignIn}) {
     
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -15,15 +16,27 @@ function SignIn({onSignIn, users}) {
         navigate('/');
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        const user = users.find(user => user.username === username && user.password === password);
-        if (!user) {
-            setError('Invalid username or password');
-            return;
+        try {
+            const response = await axios.post('/tokens/login', {
+                username,
+                password
+            }, {headers: {
+                'Content-Type': 'application/json',
+            }});
+            if (response.status === 200) {
+                
+                onSignIn(response.data.user, response.data.token);
+                navigateToMain();
+            } else {
+                setError('invalid username or password');
+                console.error('Invalid username or password');
+            }
+        } catch (error) {
+            console.error('Error signing in:', error);
+    
         }
-        onSignIn(username, password);
-        navigateToMain();
     };
 
     return (

@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AddVideo.css';
+import axios from '../axiosConfig';
 
-function AddVideo({addVideo}) {
+function AddVideo({addVideo, currentUser}) {
+  console.log("username", currentUser._id);
+  const id  = currentUser._id;
   const [formData, setFormData] = useState({
     title: '',
     author: '',
-    img: '',
     description: '',
-    video: ''
   });
+  const [imgFile, setImgFile] = useState(null);
+  const [videoFile, setVideoFile] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,21 +20,47 @@ function AddVideo({addVideo}) {
   };
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    if (file) {;
-        const fileURL = URL.createObjectURL(file);
-        const { name } = e.target;
-        setFormData({ ...formData, [name]: fileURL });
+    if (file) {
+      const { name } = e.target;
+      if (name === 'img') setImgFile(file);
+      if (name === 'video') setVideoFile(file);
     }
   };
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
-    var { title, author, img, description, video } = formData;
-    addVideo({title, author, img, description, video})
-    navigate('/');
+    
+    try {
+      const formData = new FormData();
+      formData.append('title', formData.title);
+      formData.append('author',formData.author);
+      
+      formData.append('description', formData.description);
+      if (imgFile) 
+        formData.append('img', imgFile);
+      if (videoFile) 
+        formData.append('video', videoFile);
+
+      const response = await axios.post(`/users/${id}/videos`, formData, {
+       
+      });
+
+      if (response.status === 200) {
+        // Handle success as needed
+        console.log('Video added successfully:', response.data);
+        addVideo(response.data.video);
+        navigate('/');
+      } else {
+        // Handle other responses (e.g., error responses)
+        console.error('Error adding video:', response.data);
+      }
+    } catch (error) {
+      console.error('Error adding video:', error);
+    }
+  
   };
 
   return (

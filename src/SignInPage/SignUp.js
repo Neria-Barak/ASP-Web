@@ -2,6 +2,7 @@ import React from 'react';
 import './SignInPage.css';
 import { useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
+import axios from 'axios';
 
 function SignUp({onSignUp}) {
 
@@ -25,13 +26,18 @@ function SignUp({onSignUp}) {
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
-        if (file) {
-          const fileURL = URL.createObjectURL(file);
-          setProfilePicture(fileURL);
-        }
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+            const base64String = reader.result;
+            setProfilePicture(base64String); // base64 string
     };
 
-    const handleSubmit = (event) => {
+        reader.readAsDataURL(file);
+    };
+    
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
         if (password !== confirmation) {
             setError('Passwords do not match.');
@@ -42,9 +48,29 @@ function SignUp({onSignUp}) {
             return;
         }
         setError('');
-        const newUser = { username, visibleName, password, profilePicture };
-        onSignUp(newUser);
-        navigateToMain();
+        const userData = {
+            username,
+            displayName: visibleName,
+            password,
+            profilePicture,
+          };
+      
+
+        try {
+            const response = await axios.post('http://localhost:8080/api/users', userData, {headers: {
+                'Content-Type': 'application/json',
+            }});
+            if (response.status === 200) {
+                onSignUp(response.data.user, response.data.token);
+                console.log("new user: ", response.data.user);
+                navigateToMain();
+            } else {
+                setError('Failed to sign up. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error signing up:', error);
+            setError('Failed to sign up. Please try again later.');
+        }
     };
 
     return (
