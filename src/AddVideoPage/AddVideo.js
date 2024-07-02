@@ -4,7 +4,12 @@ import './AddVideo.css';
 import axios from '../axiosConfig';
 
 function AddVideo({addVideo, currentUser}) {
-  const id  = currentUser._id;
+  const navigate = useNavigate();
+  let id = null;
+  if (currentUser) {
+    id = currentUser._id;
+  }
+  
   const [formData, setFormData] = useState({
     title: '',
     author: '',
@@ -26,7 +31,7 @@ function AddVideo({addVideo, currentUser}) {
     }
   };
 
-  const navigate = useNavigate();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,13 +55,12 @@ function AddVideo({addVideo, currentUser}) {
         console.log('Video added successfully:', response.data);
         addVideo(response.data.video);
         navigate('/');
-      } else {
-        // Handle other responses (e.g., error responses)
-        console.error('Error adding video:', response.data);
-      }
+      } 
+      
     } catch (error) {
-      console.error('Error adding video:', error);
+      alert("can only add video when signed in!");
     }
+  
   
   };
 
@@ -121,6 +125,7 @@ function AddVideo({addVideo, currentUser}) {
       </form>
     </div>
   );
+
 };
 
 export default AddVideo;

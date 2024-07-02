@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from '../axiosConfig';
 
-const CommentSection = ({ updateComments }) => {
+const CommentSection = ({currentUser}) => {
     const { id } = useParams();
     const [newComment, setNewComment] = useState('');
     const [commentList, setCommentList] = useState([]);
+    const [commentIdList, setCommentIdList] = useState([])
     const [editingIndex, setEditingIndex] = useState(null);
     const [editingComment, setEditingComment] = useState('');
 
@@ -13,8 +14,12 @@ const CommentSection = ({ updateComments }) => {
         // Fetch comments from the server
         const fetchComments = async () => {
             try {
-                const response = await axios.get(`/api/videos/${id}/comments`);
-                setCommentList(response.data.comments);
+                const response = await axios.get(`/videos/${id}`);
+                console.log(response.data);
+                const contents = response.data.map(comment => comment.content);
+                const ids = response.data.map(comment => comment._id);
+                setCommentList(contents);
+                setCommentIdList(ids);
             } catch (error) {
                 console.error('Error fetching comments:', error);
             }
@@ -29,21 +34,26 @@ const CommentSection = ({ updateComments }) => {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        try {
-            
-            const response = await axios.post(`/videos/${id}`, {
-                comment: newComment, headers: {
-                    'Content-Type': 'application/json',
-                }
-            });
-            
-            const updatedComments = [response.data, ...commentList];
-            setCommentList(updatedComments);
-            setNewComment('');
-            updateComments(id, updatedComments);
-        } catch (error) {
-            console.error('Error adding comment:', error);
-        }
+        if (currentUser) {
+            try {
+                const response = await axios.post(`/videos/${id}`, {
+                    content: newComment, id: currentUser._id}, {headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+                
+                const updatedComments = [response.data.content, ...commentList];
+                setCommentList(updatedComments);
+                const updatedIdList = [response.data._id, ...commentIdList];
+                setCommentIdList(updatedIdList)
+                setNewComment('');
+                
+            } catch (error) {
+                console.error('Error adding comment:', error);
+            }
+    } else {
+        alert("sign in first to comment!");
+    }
     };
 
     const handleEditChange = (e) => {
@@ -51,21 +61,24 @@ const CommentSection = ({ updateComments }) => {
     };
 
     const handleEditSubmit = async (index) => {
+        if (currentUser) {
         try {
             // Update edited comment on the server
-            const response = await axios.patch(`/users/${id}/comments/${index}`, {
-                comment: editingComment
+            const response = await axios.patch(`/users/${currentUser._id}/comments/${commentIdList[index]}`, {
+                content: editingComment
             });
-            const updatedComments = commentList.map((comment, i) =>
-                i === index ? response.data.comment : comment
-            );
-            setCommentList(updatedComments);
-            setEditingIndex(null);
-            setEditingComment('');
-            updateComments(id, updatedComments);
+            if (response) {
+                const updatedComments = commentList.map((comment, i) =>
+                    i === index ? editingComment : comment
+                );
+                setCommentList(updatedComments);
+                setEditingIndex(null);
+                setEditingComment('');
+            }
         } catch (error) {
-            console.error('Error editing comment:', error);
+            alert("you can only edit your own comments!");
         }
+    }
     };
 
     const startEditing = (index) => {
@@ -79,15 +92,21 @@ const CommentSection = ({ updateComments }) => {
     };
 
     const deleteComment = async (index) => {
+        if (currentUser) {
         try {
             // Delete comment from the server
-            await axios.delete(`/users/${id}/comments/${index}`);
+            console.log(commentIdList[index]);
+            await axios.delete(`/users/${currentUser._id}/comments/${commentIdList[index]}`);
             const updatedComments = commentList.filter((_, i) => i !== index);
             setCommentList(updatedComments);
-            updateComments(id, updatedComments);
+            const updatedCommentsId = commentIdList.filter((_, i) => i !== index);
+            setCommentIdList(updatedCommentsId);
+            console.log(commentIdList);
+            
         } catch (error) {
-            console.error('Error deleting comment:', error);
+            alert("you can only delete your own comments!");
         }
+    }
     };
 
     return (

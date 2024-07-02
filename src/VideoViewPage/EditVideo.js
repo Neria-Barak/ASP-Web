@@ -32,25 +32,32 @@ function EditVideo({videos, editVideo, deleteVideo, currentUser}) {
     const handleSubmit = (e) => {
         e.preventDefault();
         
-    
+        if (currentUser) {
         axios.patch(`users/${currentUser._id}/videos/${video._id}`, formData)
         .then(response => {
+    
             editVideo(response.data.video);
+            navigate(`/watch/${id}`);
         })
-        .catch(error => console.error('Error updating video:', error));
+        .catch(error => alert("can only edit your own videos!"));
 
-
-        navigate(`/watch/${id}`);
+      } else {
+        alert("sign in to edit videos!");
+      }
     };
 
     const handleDelete = () => {
+      if (currentUser) {
       axios.delete(`users/${currentUser._id}/videos/${video._id}`)
       .then(() => {
           deleteVideo(id);
       })
-      .catch(error => console.error('Error deleting video:', error));
+      .catch(error => alert("can only delete your own videos!"));
 
       navigate('/');
+    } else {
+      alert("sign in to delete videos!");
+    }
   };
 
     return (
@@ -106,7 +113,7 @@ function EditVideo({videos, editVideo, deleteVideo, currentUser}) {
                 onChange={handleFileChange}
               />
             </div>
-            <button type="submit">Edit Video</button>
+            <button type="submit" onClick={handleSubmit}>Edit Video</button>
             <button className="delete" onClick={handleDelete}>Delete Video</button>
           </form>
         </div>
