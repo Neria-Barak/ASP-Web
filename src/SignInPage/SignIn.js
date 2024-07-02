@@ -26,16 +26,12 @@ function SignIn({onSignIn}) {
                 'Content-Type': 'application/json',
             }});
             if (response.status === 200) {
-                
                 onSignIn(response.data.user, response.data.token);
                 navigateToMain();
-            } else {
-                setError('invalid username or password');
-                console.error('Invalid username or password');
-            }
+            } 
+            
         } catch (error) {
-            console.error('Error signing in:', error);
-    
+            setError('invalid username or password');
         }
     };
 
