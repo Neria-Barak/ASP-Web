@@ -9,7 +9,8 @@ import SignOut from "./SignInPage/SignOut";
 import EditVideo from "./VideoViewPage/EditVideo";
 import AddVideo from "./AddVideoPage/AddVideo";
 import VideoView from "./VideoViewPage/VideoView";
-import UserVideos from "./UserVideos/UserVideos";
+import UserVideos from "./UserVideos/UserVideos.js";
+import EditUser from "./SignInPage/EditUser";
 
 function App() {
     const [currentUser, setCurrentUser] = useState(null);
@@ -35,7 +36,6 @@ function App() {
         try {
             const response = await axios.get('/tokens');
             if (response.status === 200) {
-                console.log(response.data.user);
                 setCurrentUser(response.data.user);
             }
         } catch (error) {
@@ -52,16 +52,6 @@ function App() {
         setVisibleVideoList(videoList.filter((video) => video.title.includes(q)));
     };
 
-    const updateVideoComments = (id, updatedComments) => {
-        axios.patch(`/videos/${id}`, { comments: updatedComments })
-            .then(response => {
-                const updatedVideoList = videoList.map(video => 
-                    video._id === id ? response.data : video
-                );
-                setVideoList(updatedVideoList);
-            })
-            .catch(error => console.error('Error updating comments:', error));
-    };
 
     const editVideo = (updatedVideo) => {
         const updatedVideoList = videoList.map(video => 
@@ -89,6 +79,14 @@ function App() {
         localStorage.setItem('token', null);
     };
 
+    const handleDeleteUser = () => {
+        setCurrentUser(null);
+        localStorage.setItem('token', null);
+    };
+    const handleEditUser = (user) => {
+        setCurrentUser(user);
+    };
+
     const handleSignUp = (newUser, token) => {
       setCurrentUser(newUser);
       localStorage.setItem('token', token);
@@ -105,11 +103,12 @@ function App() {
                     <Route path="/" element={<MainPage videoList={visibleVideoList} doSearch={doSearch} currentUser={currentUser} toggleDarkMode={toggleDarkMode} />} />
                     <Route path="/signin" element={<SignIn onSignIn={handleSignIn}  />} />
                     <Route path="/signup" element={<SignUp onSignUp={handleSignUp} />} />
-                    <Route path="/signout" element={<SignOut onSignOut={handleSignOut} />} />
-                    <Route path="/watch/:id" element={<VideoView videos={videoList} currentUser={currentUser} toggleDarkMode={toggleDarkMode} updateComments={updateVideoComments} />} />
+                    <Route path="/signout" element={<SignOut onSignOut={handleSignOut} onDeleteUser={handleDeleteUser} onEditUser={handleEditUser} currentUser={currentUser} />} />
+                    <Route path="/watch/:id" element={<VideoView videos={videoList} currentUser={currentUser} toggleDarkMode={toggleDarkMode}/>} />
                     <Route path="/edit/:id" element={<EditVideo videos={videoList} editVideo={editVideo} deleteVideo={deleteVideo} currentUser={currentUser} />} />
                     <Route path="/user/:id" element={<UserVideos currentUser={currentUser} toggleDarkMode={toggleDarkMode}/>} />
                     <Route path="/addvideo" element={<AddVideo addVideo={addVideo} currentUser={currentUser} />} />
+                    <Route path="/edit-user" element={<EditUser onEditUser={handleEditUser} currentUser={currentUser}/>} />
                 </Routes>
             </BrowserRouter>
         </div>

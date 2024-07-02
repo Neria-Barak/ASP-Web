@@ -30,7 +30,7 @@ function UserVideos({currentUser, toggleDarkMode}) {
         };
         const fetchUser = async () => {
             const response = await axios.get(`/users/${id}`);
-            setUser(response.data);
+            setUser(response.data.user);
         }
         fetchUser()
         fetchVideos();
@@ -51,8 +51,8 @@ function UserVideos({currentUser, toggleDarkMode}) {
                 <Search doSearch={() => {}} currentUser={currentUser} toggleDarkMode={toggleDarkMode}></Search>
             </div>
             <div id='author-data' className='row'>
-                <img src={user.user.profilePicture} alt="Profile" id="author-picture"/>
-                <h1 id='author-name'>{user.user.displayName}</h1>
+                <img src={user.profilePicture} alt="Profile" id="author-picture"/>
+                <h1 id='author-name'>{user.displayName}</h1>
             </div>
             <div className='row'>
                 {videos.length === 0 ? (

@@ -4,10 +4,14 @@ import './AddVideo.css';
 import axios from '../axiosConfig';
 
 function AddVideo({addVideo, currentUser}) {
-  const id  = currentUser._id;
+  const navigate = useNavigate();
+  let id = null;
+  if (currentUser) {
+    id = currentUser._id;
+  }
+  
   const [formData, setFormData] = useState({
     title: '',
-    author: '',
     description: '',
   });
   const [imgFile, setImgFile] = useState(null);
@@ -26,14 +30,13 @@ function AddVideo({addVideo, currentUser}) {
     }
   };
 
-  const navigate = useNavigate();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
     const data = new FormData();
     data.append('title', formData.title);
-    data.append('author', formData.author);
     data.append('description', formData.description);
     if (imgFile) data.append('img', imgFile);
     if (videoFile) data.append('video', videoFile);
@@ -47,16 +50,14 @@ function AddVideo({addVideo, currentUser}) {
 
       if (response.status === 200) {
         // Handle success as needed
-        console.log('Video added successfully:', response.data);
         addVideo(response.data.video);
         navigate('/');
-      } else {
-        // Handle other responses (e.g., error responses)
-        console.error('Error adding video:', response.data);
-      }
+      } 
+      
     } catch (error) {
-      console.error('Error adding video:', error);
+      alert("can only add video when signed in!");
     }
+  
   
   };
 
@@ -70,16 +71,6 @@ function AddVideo({addVideo, currentUser}) {
             type="text"
             name="title"
             value={formData.title}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Author:</label>
-          <input
-            type="text"
-            name="author"
-            value={formData.author}
             onChange={handleChange}
             required
           />
@@ -121,6 +112,7 @@ function AddVideo({addVideo, currentUser}) {
       </form>
     </div>
   );
+
 };
 
 export default AddVideo;

@@ -62,7 +62,6 @@ function SignUp({onSignUp}) {
             }});
             if (response.status === 200) {
                 onSignUp(response.data.user, response.data.token);
-                console.log("new user: ", response.data.user);
                 navigateToMain();
             } else {
                 setError('Failed to sign up. Please try again.');
