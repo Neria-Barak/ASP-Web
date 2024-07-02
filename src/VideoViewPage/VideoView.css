@@ -183,7 +183,6 @@ video {
     font-size: 18px;
     color: var(--author-color);
     margin: 0 0 5px;
-    cursor: pointer
 }
 
 .video-description {
