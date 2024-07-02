@@ -9,6 +9,7 @@ import SignOut from "./SignInPage/SignOut";
 import EditVideo from "./VideoViewPage/EditVideo";
 import AddVideo from "./AddVideoPage/AddVideo";
 import VideoView from "./VideoViewPage/VideoView";
+import UserVideos from "./UserVideos/UserVideos";
 import EditUser from "./SignInPage/EditUser";
 
 function App() {
@@ -106,6 +107,7 @@ function App() {
                     <Route path="/signout" element={<SignOut onSignOut={handleSignOut} onDeleteUser={handleDeleteUser} onEditUser={handleEditUser} currentUser={currentUser} />} />
                     <Route path="/watch/:id" element={<VideoView videos={videoList} currentUser={currentUser} toggleDarkMode={toggleDarkMode}  />} />
                     <Route path="/edit/:id" element={<EditVideo videos={videoList} editVideo={editVideo} deleteVideo={deleteVideo} currentUser={currentUser} />} />
+                    <Route path="/user/:id" element={<UserVideos currentUser={currentUser} toggleDarkMode={toggleDarkMode}/>} />
                     <Route path="/addvideo" element={<AddVideo addVideo={addVideo} currentUser={currentUser} />} />
                     <Route path="/edit-user" element={<EditUser onEditUser={handleEditUser} currentUser={currentUser}/>} />
 
