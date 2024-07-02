@@ -1,5 +1,7 @@
 # ASP-Web
 
+This branch corresponds to ex1. To see ex2 go to 'server-feature' branch
+
 How to run the code:
 1. Clone this repository
 2. Install dependencies - 'npm install'
