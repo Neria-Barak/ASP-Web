@@ -3,9 +3,11 @@ import { useParams } from 'react-router-dom';
 import axios from '../axiosConfig';
 
 const CommentSection = ({currentUser}) => {
+const CommentSection = ({currentUser}) => {
     const { id } = useParams();
     const [newComment, setNewComment] = useState('');
     const [commentList, setCommentList] = useState([]);
+    const [commentIdList, setCommentIdList] = useState([])
     const [commentIdList, setCommentIdList] = useState([])
     const [editingIndex, setEditingIndex] = useState(null);
     const [editingComment, setEditingComment] = useState('');
