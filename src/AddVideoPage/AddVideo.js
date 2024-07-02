@@ -12,7 +12,6 @@ function AddVideo({addVideo, currentUser}) {
   
   const [formData, setFormData] = useState({
     title: '',
-    author: '',
     description: '',
   });
   const [imgFile, setImgFile] = useState(null);
@@ -38,7 +37,6 @@ function AddVideo({addVideo, currentUser}) {
     
     const data = new FormData();
     data.append('title', formData.title);
-    data.append('author', formData.author);
     data.append('description', formData.description);
     if (imgFile) data.append('img', imgFile);
     if (videoFile) data.append('video', videoFile);
@@ -52,7 +50,6 @@ function AddVideo({addVideo, currentUser}) {
 
       if (response.status === 200) {
         // Handle success as needed
-        console.log('Video added successfully:', response.data);
         addVideo(response.data.video);
         navigate('/');
       } 
@@ -74,16 +71,6 @@ function AddVideo({addVideo, currentUser}) {
             type="text"
             name="title"
             value={formData.title}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Author:</label>
-          <input
-            type="text"
-            name="author"
-            value={formData.author}
             onChange={handleChange}
             required
           />

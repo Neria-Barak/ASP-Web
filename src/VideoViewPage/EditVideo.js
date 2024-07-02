@@ -8,7 +8,6 @@ function EditVideo({videos, editVideo, deleteVideo, currentUser}) {
 
     const [formData, setFormData] = useState({
         title: video.title,
-        author: video.author,
         img: video.img,
         description: video.description,
         video: video.video
@@ -70,16 +69,6 @@ function EditVideo({videos, editVideo, deleteVideo, currentUser}) {
                 type="text"
                 name="title"
                 value={formData.title}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label>Author:</label>
-              <input
-                type="text"
-                name="author"
-                value={formData.author}
                 onChange={handleChange}
                 required
               />
