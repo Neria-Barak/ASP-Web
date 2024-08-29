@@ -5,6 +5,7 @@ import Search from './Search/Search';
 
 function MainPage({videoList, doSearch, currentUser, toggleDarkMode}) {
 
+
     return (
         <div className="container-fluid" id='main-page'>
             <div className='row'>
@@ -12,7 +13,7 @@ function MainPage({videoList, doSearch, currentUser, toggleDarkMode}) {
             </div>
             <div className="row" id="center">
                 <LeftMenu/>
-                <MainContent videoList={videoList}></MainContent>
+                <MainContent videoList={videoList} currentUser={currentUser}></MainContent>
             </div>
         </div>
     );

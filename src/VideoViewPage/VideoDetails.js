@@ -1,11 +1,28 @@
 import React from 'react';
 import './VideoView.css';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import axios from '../axiosConfig';
 
 const VideoDetails = ({ video }) => {
     const [like, setLike] = useState(false);
     const [dislike, setDislike] = useState(false);
+    const [author, setAuthor] = useState(null);
+
+    useEffect(() => {
+        const fetchAuthor = async () => {
+            try {
+                const userId = video.user;
+                const response = await axios.get(`/users/${userId}`);
+                const authorData = response.data;
+                setAuthor(authorData.user.displayName);
+            } catch (error) {
+                console.error('Error fetching author:', error);
+            }
+        };
+
+        fetchAuthor();
+    }, [video]);
 
     const navigate = useNavigate();
     const edit = () => {
@@ -16,7 +33,11 @@ const VideoDetails = ({ video }) => {
     <div className="video-details">
       <div className="video-info">
         <h1 className="video-title">{video.title}</h1>
-        <p className="video-author">by {video.author}</p>
+        {author ? (
+                <Link to={`/user/${video.user}`} className='video-author'>{author}</Link>
+            ) : (
+                <p>Loading author information...</p>
+            )}
         <p className="video-description">{video.description}</p>
       </div>
       <div className="video-actions">
@@ -40,11 +61,11 @@ const VideoDetails = ({ video }) => {
             <i className="bi bi-box-arrow-up-right fs-3" ></i>
             <span>Share</span>
         </div>
-        <div className="modal fade" _id="share-modal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="share-modal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title" _id="exampleModalLabel">Share</h5>
+                        <h5 className="modal-title" id="exampleModalLabel">Share</h5>
                     </div>
                     <div className="modal-body">
                         <div>Copy link: https://youtube/a-link-that-shouldnt-work</div>

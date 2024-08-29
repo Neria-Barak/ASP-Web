@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import axios from './axiosConfig';
-
+import UserVideos from "./UserVideos/UserVideos"
 import MainPage from "./MainPage/MainPage";
 import SignIn from "./SignInPage/SignIn";
 import SignUp from "./SignInPage/SignUp";
@@ -9,7 +9,7 @@ import SignOut from "./SignInPage/SignOut";
 import EditVideo from "./VideoViewPage/EditVideo";
 import AddVideo from "./AddVideoPage/AddVideo";
 import VideoView from "./VideoViewPage/VideoView";
-import UserVideos from "./UserVideos/UserVideos.js";
+// import UserVideos from "./UserVideos/UserVideos.js";
 import EditUser from "./SignInPage/EditUser";
 
 function App() {
@@ -104,9 +104,10 @@ function App() {
                     <Route path="/signin" element={<SignIn onSignIn={handleSignIn}  />} />
                     <Route path="/signup" element={<SignUp onSignUp={handleSignUp} />} />
                     <Route path="/signout" element={<SignOut onSignOut={handleSignOut} onDeleteUser={handleDeleteUser} onEditUser={handleEditUser} currentUser={currentUser} />} />
-                    <Route path="/watch/:id" element={<VideoView videos={videoList} currentUser={currentUser} toggleDarkMode={toggleDarkMode}/>} />
+                    <Route path="/watch/:pid" element={<VideoView videos={videoList} currentUser={currentUser} toggleDarkMode={toggleDarkMode}/>} />
                     <Route path="/edit/:id" element={<EditVideo videos={videoList} editVideo={editVideo} deleteVideo={deleteVideo} currentUser={currentUser} />} />
                     <Route path="/addvideo" element={<AddVideo addVideo={addVideo} currentUser={currentUser} />} />
+                    <Route path="/user/:id" element={<UserVideos currentUser={currentUser} toggleDarkMode={toggleDarkMode}/>} />
                     <Route path="/edit-user" element={<EditUser onEditUser={handleEditUser} currentUser={currentUser}/>} />
                 </Routes>
             </BrowserRouter>

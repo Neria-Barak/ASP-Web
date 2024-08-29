@@ -7,13 +7,17 @@ import VideoDetails from './VideoDetails.js';
 import './VideoView.css';
 
 function VideoView({videos, currentUser, toggleDarkMode}) {
-    const { id } = useParams();
+    const { pid } = useParams();
     const [video, setVideo] = useState(null);
 
     useEffect(() => {
-        const foundVideo = videos.find(vid => vid._id.toString() === id);
-        setVideo(foundVideo);
-    }, [id, videos]);
+        const foundVideo = videos.find(vid => vid._id.toString() === pid);
+    
+        // Check if a video is found and create a new object reference
+        if (foundVideo) {
+            setVideo({ ...foundVideo });  // Create a shallow copy to ensure a new reference
+        }
+    }, [pid, videos]);
 
     if (!video) return (<div>Loading ...</div>);
     return (
@@ -28,7 +32,7 @@ function VideoView({videos, currentUser, toggleDarkMode}) {
                     <CommentSection currentUser={currentUser} />
                 </div>
                 <div className='col-4' id="videos-scroll">
-                    <VideoList currentVideoId={id}/>
+                    <VideoList currentVideoId={pid} currentUser={currentUser}/>
                 </div>
             </div>
         </div>

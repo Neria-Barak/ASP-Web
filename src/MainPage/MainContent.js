@@ -1,12 +1,12 @@
 import VideoListResults from './VideoListResults/VideoListResults';
 import TagsBar from './Tags/TagsBar';
 
-function MainContent({videoList}) {
+function MainContent({videoList, currentUser}) {
 
     return (
         <div id="right" className="col main-content">
             <TagsBar></TagsBar>
-            <VideoListResults videos={videoList}/>
+            <VideoListResults videos={videoList} currentUser={currentUser}/>
         </div>
     );
 }

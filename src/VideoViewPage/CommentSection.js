@@ -3,11 +3,9 @@ import { useParams } from 'react-router-dom';
 import axios from '../axiosConfig';
 
 const CommentSection = ({currentUser}) => {
-const CommentSection = ({currentUser}) => {
-    const { id } = useParams();
+    const { pid } = useParams();
     const [newComment, setNewComment] = useState('');
     const [commentList, setCommentList] = useState([]);
-    const [commentIdList, setCommentIdList] = useState([])
     const [commentIdList, setCommentIdList] = useState([])
     const [editingIndex, setEditingIndex] = useState(null);
     const [editingComment, setEditingComment] = useState('');
@@ -16,7 +14,7 @@ const CommentSection = ({currentUser}) => {
         // Fetch comments from the server
         const fetchComments = async () => {
             try {
-                const response = await axios.get(`/videos/${id}`);
+                const response = await axios.get(`/videos/${pid}`);
                 console.log(response.data);
                 const contents = response.data.map(comment => comment.content);
                 const ids = response.data.map(comment => comment._id);
@@ -28,7 +26,7 @@ const CommentSection = ({currentUser}) => {
         };
 
         fetchComments();
-    }, [id]); // Fetch comments whenever the 'id' parameter changes
+    }, [pid]); // Fetch comments whenever the 'id' parameter changes
 
     const handleInputChange = (e) => {
         setNewComment(e.target.value);
@@ -38,7 +36,7 @@ const CommentSection = ({currentUser}) => {
         e.preventDefault();
         if (currentUser) {
             try {
-                const response = await axios.post(`/videos/${id}`, {
+                const response = await axios.post(`/videos/${pid}`, {
                     content: newComment, id: currentUser._id}, {headers: {
                         'Content-Type': 'application/json',
                     }

@@ -1,9 +1,9 @@
 import VideoItem from "../VideoItem/VideoItem";
 
-function VideoListResults({videos}) {
+function VideoListResults({videos, currentUser}) {
 
     const videoList = videos.map((video, key) => {
-        return <VideoItem {...video} key={key}></VideoItem>
+        return <VideoItem {...video} key={key} currentUser={currentUser}></VideoItem>
     });
 
     return(

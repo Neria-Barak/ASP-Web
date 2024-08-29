@@ -1,11 +1,29 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from '../../axiosConfig';
 
-const VideoListItem = ({ video }) => {
+const VideoListItem = ({ video, currentUser }) => {
     
     const navigate = useNavigate();
-    const handleClick = () => {
+
+    let id = 0;
+    if (currentUser) {
+        id = currentUser._id;
+    }
+    const handleClick = async() => {
         navigate(`/watch/${video._id}`)
+        window.location.reload();
+
+        try {
+            console.log(video._id);
+            const response = await axios.post(`/videos/${video._id}/${id}`);
+
+            if (response.status === 200) {
+                console.log("added view successfully");
+            }
+        } catch (error) {
+            console.log("user not logged in");
+        }
     };
 
     return (
@@ -14,7 +32,7 @@ const VideoListItem = ({ video }) => {
             <div className="video-info">
                 <p id="title" className="card-text">{video.title}</p>
                 <p className="card-text">{video.author}</p>
-                <p className="card-text">{video.views} views. {video.time} ago</p>
+                <p className="card-text">{video.views} views.</p>
             </div>
         </div>
     );
